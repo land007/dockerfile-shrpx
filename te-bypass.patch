@@ -1,0 +1,12 @@
+--- a/src/shrpx_spdy_upstream.cc	2015-08-19 17:02:39.590123159 +0800
++++ b/src/shrpx_spdy_upstream.cc	2015-08-19 17:00:49.189031452 +0800
+@@ -864,8 +864,7 @@
+   nv[hdidx++] = "HTTP/1.1";
+   for(Headers::const_iterator i = downstream->get_response_headers().begin();
+       i != downstream->get_response_headers().end(); ++i) {
+-    if(util::strieq((*i).first.c_str(), "transfer-encoding") ||
+-       util::strieq((*i).first.c_str(), "keep-alive") || // HTTP/1.0?
++    if(util::strieq((*i).first.c_str(), "keep-alive") || // HTTP/1.0?
+        util::strieq((*i).first.c_str(), "connection") ||
+        util:: strieq((*i).first.c_str(), "proxy-connection")) {
+       // These are ignored
